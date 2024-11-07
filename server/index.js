@@ -27,9 +27,6 @@ const verifyJWT = (req, res, next) => {
   })
 }
 
-//mongodb connection
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-
 // MongoDB connection URI
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@wellnesspath.xqszy.mongodb.net/?retryWrites=true&w=majority&appName=WellnessPath`;
 const client = new MongoClient(uri, {
@@ -113,7 +110,7 @@ async function run() {
       const query = { email: email };
       const result = await userCollection.findOne(query);
       res.send(result);
-  })
+    })
   // Delete a user
 
   app.delete('/delete-user/:id', verifyJWT, verifyAdmin, async (req, res) => {
